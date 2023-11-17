@@ -52,11 +52,18 @@ jobs:
         with:
           command: build
           args: --lib --features "${{ matrix.features }}"
+      - name: Install Miri
+        run: |
+          rustup toolchain install nightly --component miri
+          rustup override set nightly
+          cargo miri setup
       - name: Test
         uses: actions-rs/cargo@v1
         with:
           command: test
           args: --features "${{ matrix.features }}"
+      - name: Test with Miri
+        run: cargo miri test
   benchmark:
     name: Benchmark
     runs-on: ${{ matrix.os }}
