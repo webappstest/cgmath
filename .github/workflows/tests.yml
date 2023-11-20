@@ -64,7 +64,9 @@ jobs:
           command: test
           args: --features "${{ matrix.features }}"
       - name: Test with Miri
-        run: cargo miri test
+        run: |
+          cargo clean
+          cargo miri test
   benchmark:
     name: Benchmark
     runs-on: ${{ matrix.os }}
