@@ -29,6 +29,7 @@ jobs:
   test:
     name: Test
     runs-on: ${{ matrix.os }}
+    fail-fast: false
     env:
       RUST_BACKTRACE: 1
     strategy:
