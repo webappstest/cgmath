@@ -29,10 +29,10 @@ jobs:
   test:
     name: Test
     runs-on: ${{ matrix.os }}
-    fail-fast: false
     env:
       RUST_BACKTRACE: 1
     strategy:
+      fail-fast: false
       matrix:
         os: [windows-latest, ubuntu-latest, macos-latest]
         toolchain: [stable, nightly]
